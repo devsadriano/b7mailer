@@ -189,6 +189,34 @@ no caso retirar o <html lang="en">
 <html>
 
 
+###########################################################################################
+###########################################################################################
+###########################################################################################
+Enviando Emails com Anexos
+
+o q aconte qdo agente precisa enviar email com anexo pelo laravel
+imagina eu ter configurado todo um sistema com envio de email e fiz bachup no BD todos os dias comeco rodar uma tarefa pra fazer bachup mais n quer ficar salvando o bachup la no servidor entao eu configuro uma aplicacao pra enviar email pra mim anexando esse bachup .sql no corpo do email pra q fique guardado 
+ 
+app\Mail\RegisterEmail.php 
+    public function build()
+    {
+        return $this->view('Mail.registerMail', [
+            'nome' => $this->user->name 
+        ])->attach();  ou seja anexar
+    }
+
+->attach('C:/Users/adriano.rocha/Documents/Laravel/B7Web-Bonieky/b7mailer/public/boneco.png');
+
+eu posso renomear tbm passando um array como segundo parametro com a chave as e o nome q eu quiser
+       ])->attach(__DIR__.'/../../public/boneco.png',[
+            'as' => '404.png'
+        ]);
+ 
+
+
+
+
+
 
 
 
