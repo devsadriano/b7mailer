@@ -211,14 +211,40 @@ eu posso renomear tbm passando um array como segundo parametro com a chave as e 
        ])->attach(__DIR__.'/../../public/boneco.png',[
             'as' => '404.png'
         ]);
- 
 
 
+###########################################################################################
+###########################################################################################
+###########################################################################################
+Configurações Importantes do Email
+
+temos configuracoes q sao feitas na configuração do envio           app\Http\Controllers\Mails\AuthMailController.php
+e outras na configuração do email                                   resources\views\Mail\registerMail.blade.php
+
+uma delas é o asunto
+
+$this->subject('Assunto do email');
+subject = asssunto
+
+$this->from('reply@email.com');
+quem mando email
 
 
+$this->replyTo('devsadriano@gmail.com');
+qdo clicar em responder vai responder pro email q eu defini
 
+enviar email com copia
+n vou conseguir enviar definindo dentro do email app\Mail\RegisterEmail.php
+e sim na funcao Mail dentro de app\Http\Controllers\Mails\AuthMailController.php
 
+Mail::to('devsadriano@gmail.com')
+    ->cc('email@gmail.com')
+    ->bcc('email2@gmail.com')
+    ->send($registerEmail);
 
+a regra é quando estou definindo destinatarios vou trabalhar aqui no sendRegisterMail() dentro do meu controller e qdo estou definindo configuracoes do email em si eu trabalho dentro da pasta Mail no registerEmail
+
+podendo ser no __construct tbm
 
 
 

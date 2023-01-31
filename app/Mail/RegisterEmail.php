@@ -21,6 +21,11 @@ class RegisterEmail extends Mailable
 
     public function build()
     {
+        $this->subject('Assunto do Email');
+        $this->from('reply@email.com');
+        $this->replyTo('devsadriano@gmail.com');
+
+
         return $this->view('Mail.registerMail', [
             'nome' => $this->user->name 
         ])->attach(__DIR__.'/../../public/boneco.png',[
