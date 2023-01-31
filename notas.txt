@@ -49,3 +49,68 @@ public function sendRegisterMail(){
     }
 
 
+###########################################################################################
+###########################################################################################
+###########################################################################################
+Passando dados dinâmicos para o Email
+
+
+estaos acessando a aplicacao  por uma rota e essa rota esta encaminhando agente pro controller este controller cria o email com a funcao RegisterEmail()  tem um construtor e dentro do método builder dessa mesma funcao estamos retornando um view com o registerMail já q é uma view vamos passar os dados pra ela a partit do nosso controller, vamos criar dado fake  $nome = 'Alessandro K.' 
+
+
+    public function build()
+    {
+        $nome = 'Alessandro K.';
+        return $this->view('Mail.registerMail', [
+            'nome' => $nome,
+        ]);
+    }
+
+agora dentro da view resources\views\Mail\registerMail.blade.php
+<h1>Graças a Deus Funcionou, {{ $nome }} </h1>
+aqui imprimios nome 
+passamos dados do app\Mail\RegisterEmail.php para nossa view resources\views\Mail\registerMail.blade.php
+
+
+tbm podemos instanciar model
+    public function build()
+    {
+        //tbm posso instanciar model
+         $user = new User();
+         $user->name = 'Alessandro K2.';
+         return $this->view('Mail.registerMail', [
+            'nome' => $user->name,
+        ]);
+porem esse dado  $user = new User();
+                 $user->name = 'Alessandro K2.';
+ja tem no nosso controller 
+
+public function sendRegisterMail(){
+        $registerEmail = new RegisterEmail();
+        return $registerEmail;
+    }
+entao n faz sentido estar buscando ele novamente faz mais sentido eu passar pro meu controller adiante
+e vamos passar pra nossa funcao $registerEmail atraves do construtor
+        $registerEmail = new RegisterEmail($user->name);
+ja passmos o nome pro construtor da minha funcao RegisterEmail()
+agora vou receber nome no construtor __construct()
+    public function __construct($name)
+    {
+        // se ele chega no nosso contrutor ele ta dentro da nossa classe e se ta dentro da classe eu posso utilizalo como uma propriedade
+        dd($name);
+    }
+
+entao
+    private $name;
+    public function __construct($name)
+    {
+        $this->name = $name;
+    }
+agora passei pra minha classe entao eu posso utilizar ele no build
+    public function build()
+    {
+        return $this->view('Mail.registerMail', [
+            'nome' => $this->name,
+        ]);
+    }
+

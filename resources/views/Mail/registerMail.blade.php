@@ -1,4 +1,1 @@
-<h1>Graças a Deus Funcionou!
-
-
-</h1>
+<h1>Graças a Deus Funcionou, {{ $nome }} </h1>
