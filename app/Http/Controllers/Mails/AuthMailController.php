@@ -17,9 +17,9 @@ class AuthMailController extends Controller
 
         $registerEmail = new RegisterEmail($user);
 
-        return $registerEmail;
+        //return $registerEmail;
         // a classe RegisterEmail() ela tá de fato criando email montando a view mas ela n e repsondavel por nenhuma funcao de SMTP
         // e o return ta so retornando uma view do visual
-        //Mail::to('faturadinf@sesau.campogrande.ms.gov.br')->send($registerEmail);
+        Mail::to('devsadriano@gmail.com')->send($registerEmail);
     }
 }

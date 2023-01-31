@@ -141,3 +141,23 @@ e no controler ta dando erro agora por q ta passandor uma string e n é isso q t
 
 
 
+###########################################################################################
+###########################################################################################
+###########################################################################################
+Estilização do Email e Compatibilidade
+
+nao colocamos arquivos esternos com css pq n e bem visto por leitores de email, entao para estilizar utilizamos style, n podemos utilizar scripts javascript tbm
+resources\views\Mail\registerMail.blade.php
+<h1>Graças a Deus Funcionou, {{ $nome }} </h1>
+<style>
+    h1{
+        color: red
+    }
+</style>
+e tbm n é recomendade usar sytle somente em linha
+<h1 style="color: red">Graças a Deus Funcionou, {{ $nome }} </h1>
+
+
+
+
+
