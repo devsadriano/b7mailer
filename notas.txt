@@ -33,5 +33,19 @@ o controler n tem a funcao de criar um email pra enviar email precisamos criar u
 
 
 public function build() esse metodo e responsavel por construir o noso email ele retorna uma view
+public function build()
+    {
+        return $this->view('Mail.registerMail');
+    }
+precisamos passar pelo menos duas informacoes 
+(de quem e esse email de qual ta enviando esse email) o laravel q define 
+MAIL_FROM_ADDRESS=contato@laravelB7web.com
+MAIL_FROM_NAME="${APP_NAME}"
+
+(pra onde esta enviando esse email)
+app\Http\Controllers\Mails\AuthMailController.php
+public function sendRegisterMail(){
+        
+    }
 
 
