@@ -113,4 +113,31 @@ agora passei pra minha classe entao eu posso utilizar ele no build
             'nome' => $this->name,
         ]);
     }
+assim aprendemos a passar dados do meu controler p a view de email
+
+
+###########################################################################################
+###########################################################################################
+###########################################################################################
+Passando dados dinamicos - Injeção de Dependencia
+
+O q é Injeção de Dependencia é uma classe depender da outra classe ser passada por parametro
+ao inves de passar so o name     $user->name = 'Alessandro K2.';
+eu passaria a classe             $user = new User();
+e o registerEmail() iria tratar essa classe
+entoa dentro do app\Mail\RegisterEmail.php
+eu preciso preparar meu __construct() pre receber uma classe do tipo User
+pra isso tenho q incluir no namespace use App\Model\User
+e vou definir tipo User e $name é uma variavel pra ele
+__construct(User $qualquerNome)
+
+    public function __construct(User $qualquerNome)
+        {
+            $this->user = $qualquerNome;
+        }
+o q mudo passei a informar pra ele um tipo 
+e no controler ta dando erro agora por q ta passandor uma string e n é isso q tem q passar é dado do tipo usuario
+        $registerEmail = new RegisterEmail($user);
+
+
 

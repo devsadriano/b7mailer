@@ -14,24 +14,15 @@ class RegisterEmail extends Mailable
 
     private $name;
 
-    public function __construct($name)
+    public function __construct(User $qualquerNome)
     {
-        $this->name = $name;
-        //dd($name);
+        $this->user = $qualquerNome;
     }
 
     public function build()
     {
-        // //tbm posso instanciar model
-        // $user = new User();
-        // $user->name = 'Alessandro K2.';
         return $this->view('Mail.registerMail', [
-            'nome' => $this->name,
-        
-
-        // $nome = 'Alessandro K.';
-        // return $this->view('Mail.registerMail', [
-        //     'nome' => $nome,
+            'nome' => $this->user->name 
         ]);
     }
 }

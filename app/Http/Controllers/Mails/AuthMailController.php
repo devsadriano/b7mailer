@@ -13,9 +13,9 @@ class AuthMailController extends Controller
     public function sendRegisterMail(){
 
         $user = new User();
-        $user->name = 'Alessandro K2.';
+        $user->name = 'Alessandro K3.';
 
-        $registerEmail = new RegisterEmail($user->name);
+        $registerEmail = new RegisterEmail($user);
 
         return $registerEmail;
         // a classe RegisterEmail() ela tá de fato criando email montando a view mas ela n e repsondavel por nenhuma funcao de SMTP
