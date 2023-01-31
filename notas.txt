@@ -247,4 +247,21 @@ a regra é quando estou definindo destinatarios vou trabalhar aqui no sendRegist
 podendo ser no __construct tbm
 
 
+###########################################################################################
+###########################################################################################
+###########################################################################################
+O Conceito de Queue / Filas
+
+vamos ver problema q nos temos pra gente entender como q podmeos resolvelos na nossa rota http://127.0.0.1:8000/enviar-email
+do jeito q ta demora requisao pra enviar email é apropriado trabalhar com background e vamos fazer isso com Filas / Queues
+
+uma requisicao http pode ser o registro de um usuario na nossa aplicacao  ela chega ate nossa aplicacao laravel e nese momento  a app laravel envia o email e depois a resposta pro cliente
+trabalahndo em fila conseguimos dar resposta ao cliente e ao mesmo tempo trabalhar com fila de execução
+
+Filas / Queues 
+É um conjunto de Jobs / trabalhos agrupados em forma de fila indiana, onde primeiro a antrar é o primeiro a ser executado. Exatamente com Funciona uma fila de banco
+Laravel Worker em um processo q roda em paralelo a sua aplicacao principal e tem funcao de acessar Fila em busca de um Job e providenciar sua execucao
+
+
+
 
