@@ -323,3 +323,22 @@ $user->password = '123';
 
 fzdo isso estamos salbvando esse dado no BD
 
+###########################################################################################
+###########################################################################################
+###########################################################################################
+Criando a Primeira Fila [2]
+
+pq antes tava funcionava e agora tenho q salvar esse usuario?
+em um terminal rodamos aplicacao laravel em um espaco alocad ana memoria do computador
+no outro terminal rodamos um Worker ou seja um servico separado da nossa palicacao principal do laravel
+$registerEmail = new RegisterEmail($user); entao quando esse dado gravado la na memoria no BD pra ser utilizado ele procuro esse registro de usuarios e viu que é um model entao ta no BD eu vou so pegar o id e da proxima vez q precisar da relacao deste model eu vo buscar pelo id so q ele n tinha sido salvo ele estava apenas na memoria, como o processo de entrar na fila e o processo da fila ser executada n aconte no mesmo terminal um acaba n conhecendo o outro, entao tudo q agente for passar como referencia p RegisterEmail($user) ou tem q ser uma string ('teste') bem especifica  ou um (123) valor bem especifico ou uma referencia ($user) e caso seje referencia esse dado tem q ser salvo no BD pq ele vai utilizar os dados do momento q a fila for gravada no BD
+E como ele sabe o id desse model 
+
+
+###########################################################################################
+###########################################################################################
+###########################################################################################
+Personalizando o nosso Job
+
+
+
