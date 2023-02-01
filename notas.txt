@@ -340,5 +340,60 @@ E como ele sabe o id desse model
 ###########################################################################################
 Personalizando o nosso Job
 
+p ter mais controle do codigo vamos criar nosso proprio Job
+ate agora estamos deixando no classe Mail trabalar com queue mas  vamos trabalhar mais c padrao laravel
+o padrao laravel p envio de email nos criariamos entre jogar esse email diretamente na queue agente criaria uma classe Job p incorporar esse email dentro dessa classe Job e ele sim faria todas as configurações relativas ao trabalho em si e depois çlancaria la na fila pra ser executado
+php artisan make:job SendAuthMail
+essa classe vem com __construct e handle()
+no __construct passamos as dependeicas e fazemos as configuracoes 
+no handle() fazemos o ato em si daquele job deve fazer nesse caso ele tem q fazer o ta sendo feito no controller q e criari e  enviar email 
 
+
+$registerEmail = new RegisterEmail($user);
+
+        //return $registerEmail;
+        // a classe RegisterEmail() ela tá de fato criando email montando a view mas ela n e repsondavel por nenhuma funcao de SMTP
+        // e o return ta so retornando uma view do visual
+        Mail::to('devsadriano@gmail.com')
+            ->cc('email@gmail.com')
+            ->bcc('email2@gmail.com')
+            ->queue($registerEmail);
+
+            tiramos do arquivo app\Http\Controllers\Mails\AuthMailController.php
+
+e colocamos no arquivo app\Jobs\SendAuthMail.php
+
+RegisterEmail($user); agora perceba q aqui temos clase $user q está sendo injetada pro nosso RegisterEmail($user) e ela ta vindo no nosso controller 
+e como faz pra receber essa classe $user  por aqui?
+vamos fazer igual fizemos no app\Mail\RegisterEmail.php 
+no __construct() vamos chamar aqui um Model User e definir um nome pra ele $user
+vamos definir uma propriedade dessa classe private $user;
+
+e no __construct
+public function __construct(User $user)
+    {
+        $this->user = $user;
+    }
+
+passamos o $user __construct(User $user) para o private $user que é o $this->user
+
+
+e dentro do handle()
+
+RegisterEmail($this->user)  para fazer uso da nossa classe
+
+uma vez q definimos o User q tá recebendo o $user com tipagem ceerrta  no app\Jobs\SendAuthMail.php 
+agente precisa mudar o queue pq dentro do nosso Job agente n quer criar outro job entao vamos tirar o queue dqui e voltar o send
+->send($registerEmail);
+pq queremos enviar o emial
+
+e como tiramos do nosso controller a responsabilidade de enviar o email agora temos q dar pra ele a responsabilidade de chamar  o nosso JOb de cadastrar na fila pra isso iremos utilizar SendAuthMail q e nome do nosso Job no método :: como agente precisa passar uma dependenica pra ele q é $user ::dispatch($user)
+
+agora startamos servidor e o Worker
+
+
+###########################################################################################
+###########################################################################################
+###########################################################################################
+Personalizando o nosso Job
 
