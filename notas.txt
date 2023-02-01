@@ -322,3 +322,4 @@ $user->password = '123';
         $user->save();
 
 fzdo isso estamos salbvando esse dado no BD
+

@@ -13,9 +13,9 @@ class AuthMailController extends Controller
 
         $user = new User();
 
-        $user->name = 'Alessandro K19.';
+        $user->name = 'Alessandro K20.';
         $user->password = '1234';
-        $user->email = 'teste19@teste.com';
+        $user->email = 'teste20@teste.com';
 
         $user->save();
 
