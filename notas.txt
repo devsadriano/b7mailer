@@ -290,3 +290,35 @@ vamos criar uma migrations da tabela
 php artisan queue:table
 
 
+###########################################################################################
+###########################################################################################
+###########################################################################################
+Criando a primeira Fila
+
+Mail::to('devsadriano@gmail.com')
+            ->cc('email@gmail.com')
+            ->bcc('email2@gmail.com')
+            ->send($registerEmail);
+
+até aqui n estamos usando a fila  para isso vamos no arquivo app\Http\Controllers\Mails\AuthMailController.php
+para q envia por uma fila ao inves de enviar um email eu vou cadastrar esse email em uma fila 
+viu trocar metodo send pelo queue com isso ao inves de enviar emial vai colocalo em uma fila
+
+Mail::to('devsadriano@gmail.com')
+            ->cc('email@gmail.com')
+            ->bcc('email2@gmail.com')
+            ->queue($registerEmail);
+agora vamos vriar um Worker ou seja um processo q vai ficar rodando e lendo aquela fila
+
+php artisan queue:work
+
+no momento q eu criar esse work ele vai comercar processar esses dados da fila
+porem está dando erro, explicando: no arquivo app\Http\Controllers\Mails\AuthMailController.php
+$user = new User(); nos estamos criando classe usuario mas n estamos salvando essa classe por isso laravel esta reclamado
+
+$user->password = '123';
+        $user->email = 'test@teste.com';
+
+        $user->save();
+
+fzdo isso estamos salbvando esse dado no BD

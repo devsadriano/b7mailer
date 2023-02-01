@@ -6,17 +6,17 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Foundation\Auth\User;
-
+use App\Models\User;
 class RegisterEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    private $name;
+    private $user;
 
     public function __construct(User $qualquerNome)
     {
         $this->user = $qualquerNome;
+        // dd($this->user);
     }
 
     public function build()
