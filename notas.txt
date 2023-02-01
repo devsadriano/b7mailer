@@ -262,6 +262,31 @@ Filas / Queues
 É um conjunto de Jobs / trabalhos agrupados em forma de fila indiana, onde primeiro a antrar é o primeiro a ser executado. Exatamente com Funciona uma fila de banco
 Laravel Worker em um processo q roda em paralelo a sua aplicacao principal e tem funcao de acessar Fila em busca de um Job e providenciar sua execucao
 
+###########################################################################################
+###########################################################################################
+###########################################################################################
+Configuração Database Queues
 
+Pra usar as Filas / Queues precisamos fazer 2 configuracoes
+1  em config\queue.php por padrao laravel tem suas conexoes a ordem das tarefas tem q ser armazenadas em alguns lugar a primeira é a 'sync' sincrona basicamente sem fila com se ela tivesse desativada pq ela vai ser executada no momento em q ela entra la na lista de execucao
+
+2 database ou seja ele vai criar essa tarefa la no nosso BD vai ler BD e executar depois
+
+3 beanstalkd é um servico q laravel recomenda 
+
+4 sqs e outro servico q laravel recomenda   da amazom
+
+5 redis é um BD em memoria é muito rapido
+
+VAMOS UTILIZAR O DATABASE 
+vamos no arquivo .env
+
+QUEUE_CONNECTION=sync
+ele tá em sync ou seja sincrono e mudamos para database
+QUEUE_CONNECTION=database
+
+vamos criar uma migrations da tabela
+
+php artisan queue:table
 
 
